@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactIcon, ViteIcon, TailwindIcon, JavaScriptIcon, NodeIcon, TypeScriptIcon, ExpressIcon, PrismaIcon, PHPIcon, MySQLIcon, DockerIcon, APIIcon } from './TechIcons';
+import { ReactIcon, ViteIcon, TailwindIcon, JavaScriptIcon, NodeIcon, TypeScriptIcon, ExpressIcon, PrismaIcon, PythonIcon, MySQLIcon, DockerIcon, APIIcon } from './TechIcons';
 
 export default function Hero() {
   return (
@@ -14,13 +14,13 @@ export default function Hero() {
           
           <div className="inline-block">
             <span className="bg-blue-50 text-blue-600 px-4 py-2 rounded-lg text-lg font-mono">
-              Backend Developer Jr.
+              Full Stack Developer Jr.
             </span>
           </div>
           
           <p className="text-gray-600 text-lg leading-relaxed">
-         Soy <strong>desarrollador backend junior</strong> con experiencia en JavaScript, TypeScript y APIs REST. 
-         Me encanta aprender, explorar nuevas tecnologías y construir proyectos 
+         Soy <strong>desarrollador full stack junior</strong> con experiencia en React, Node.js, TypeScript y APIs REST.
+         Me encanta aprender, explorar nuevas tecnologías y construir proyectos
          que resuelvan problemas reales.
           </p>
           
@@ -57,7 +57,7 @@ export default function Hero() {
               <ReactIcon size={40} />
             </div>
 
-            <div className="absolute top-8 left-1/2 -translate-x-1/2 text-yellow-400 animate-float-delayed">
+            <div className="absolute top-8 left-1/2 -translate-x-1/2 text-yellow-400 animate-float-slow">
               <JavaScriptIcon size={38} />
             </div>
 
@@ -79,8 +79,8 @@ export default function Hero() {
               <PrismaIcon size={38} />
             </div>
 
-            <div className="absolute bottom-8 left-1/3 text-indigo-300 animate-float">
-              <PHPIcon size={36} />
+            <div className="absolute bottom-8 left-1/3 text-yellow-300 animate-float">
+              <PythonIcon size={36} />
             </div>
 
             <div className="absolute bottom-8 right-1/3 text-orange-400 animate-float-slow">
@@ -102,13 +102,13 @@ export default function Hero() {
                 </p>
                 <div className="mt-4 flex gap-2 justify-center flex-wrap px-4">
                   <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium border border-white/20">
-                    APIs
+                    React
                   </span>
                   <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium border border-white/20">
-                    MySQL
+                    Node.js
                   </span>
                   <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium border border-white/20">
-                    Docker
+                    TypeScript
                   </span>
                 </div>
               </div>
