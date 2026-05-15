@@ -8,6 +8,10 @@ import Projects from './components/Projects.jsx';
 
 import Footer from './components/Footer.jsx';
 
+// Lenis smooth scroll
+import { useLenis } from './hooks/useLenis';
+import { LenisContext } from './contexts/LenisContext';
+
 // COLOR GLOBAL DEL PORTFOLIO
 // Para gradiente, usa: 'linear-gradient(to bottom right, #ColorInicial, #ColorFinal)'
 // Para color sólido, usa: '#CodigoColor'
@@ -15,6 +19,7 @@ const BACKGROUND_GLOBAL = 'linear-gradient(to bottom right, #ffffff, #f5f5f5)';
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const lenis = useLenis();
 
   return (
     <>
@@ -23,28 +28,30 @@ function App() {
 
       {/* Contenido principal del portfolio */}
       {!loading && (
-        <div className="min-h-screen" style={{ background: BACKGROUND_GLOBAL }}>
-          {/* Header fijo con navegación */}
-          <Header />
+        <LenisContext.Provider value={lenis}>
+          <div className="min-h-screen" style={{ background: BACKGROUND_GLOBAL }}>
+            {/* Header fijo con navegación */}
+            <Header />
 
-          {/* Sección Hero - Presentación principal */}
-          <section id="hero">
-            <Hero />
-          </section>
+            {/* Sección Hero - Presentación principal */}
+            <section id="hero">
+              <Hero />
+            </section>
 
-          {/* Sección Skills - Tecnologías */}
-          <section id="skills">
-            <TechSkills />
-          </section>
+            {/* Sección Skills - Tecnologías */}
+            <section id="skills">
+              <TechSkills />
+            </section>
 
-          {/* Sección Projects - Proyectos realizados */}
-          <section id="projects">
-            <Projects />
-          </section>
+            {/* Sección Projects - Proyectos realizados */}
+            <section id="projects">
+              <Projects />
+            </section>
 
-          {/* Footer - Información adicional y redes sociales */}
-          <Footer />
-        </div>
+            {/* Footer - Información adicional y redes sociales */}
+            <Footer />
+          </div>
+        </LenisContext.Provider>
       )}
     </>
   );

@@ -38,3 +38,118 @@
   animation: float-slow 3.5s ease-in-out infinite;
   animation-delay: 1s;
 }
+
+/* ========================================
+   Lenis Smooth Scroll Optimizations
+   ======================================== */
+
+/* Configuración base para Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+/* Desactivar el scroll-behavior nativo cuando Lenis está activo */
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* Prevenir el scroll smooth nativo que puede conflictuar con Lenis */
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+/* Optimización para el scroll en Lenis - asegura suavidad */
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ========================================
+   GPU Acceleration & Performance
+   ======================================== */
+
+@layer utilities {
+  /* Aceleración GPU para animaciones suaves */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Optimización para elementos con parallax */
+  .parallax-optimized {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Optimización para elementos animados con Framer Motion */
+  .motion-optimized {
+    transform: translateZ(0);
+    will-change: opacity, transform;
+  }
+}
+
+/* ========================================
+   Reduced Motion Support
+   ======================================== */
+
+/* Respetar preferencias de reduced motion del usuario */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Desactivar Lenis smooth scroll si el usuario prefiere reduced motion */
+  html.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================
+   Stacked Cards Effect
+   ======================================== */
+
+/* Asegurar que el sticky positioning funcione correctamente */
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+/* Optimización para el efecto de stacked cards */
+@layer components {
+  .stacked-card-container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .stacked-card {
+    will-change: transform, opacity;
+    transform-origin: center top;
+  }
+}
+
+/* Mejoras visuales para las cards apiladas */
+@layer utilities {
+  .card-shadow-stacked {
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04),
+      0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+
+  .card-shadow-stacked-hover {
+    box-shadow:
+      0 25px 50px -12px rgba(0, 0, 0, 0.25),
+      0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+}

@@ -6,32 +6,43 @@ let scrollTimeout: NodeJS.Timeout | null = null;
 
 /**
  * Hook para detectar el scroll y cambiar el estilo del header
+ * @param lenis - Instancia opcional de Lenis para usar eventos de Lenis en lugar de window scroll
  */
-export function useScrollDetection() {
+export function useScrollDetection(lenis?: any) {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+    const handleScroll = (data?: any) => {
+      const scrollY = lenis ? data?.scroll || 0 : window.scrollY;
+      setIsScrolled(scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+
+    if (lenis) {
+      // Usar eventos de Lenis si está disponible
+      lenis.on('scroll', handleScroll);
+      return () => lenis.off('scroll', handleScroll);
+    } else {
+      // Fallback a window scroll events
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, [lenis]);
 
   return isScrolled;
 }
 
 /**
  * Hook para detectar la dirección del scroll y mostrar/ocultar el header
+ * @param lenis - Instancia opcional de Lenis para usar eventos de Lenis en lugar de window scroll
  * @returns {boolean} true si el header debe estar visible, false si debe ocultarse
  */
-export function useScrollDirection() {
+export function useScrollDirection(lenis?: any) {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+    const handleScroll = (data?: any) => {
+      const currentScrollY = lenis ? data?.scroll || 0 : window.scrollY;
 
       // Ignorar el scroll si es programático (navegación por botones)
       if (isProgrammaticScroll) {
@@ -56,9 +67,16 @@ export function useScrollDirection() {
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+    if (lenis) {
+      // Usar eventos de Lenis si está disponible
+      lenis.on('scroll', handleScroll);
+      return () => lenis.off('scroll', handleScroll);
+    } else {
+      // Fallback a window scroll events
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, [lastScrollY, lenis]);
 
   return isVisible;
 }
@@ -67,8 +85,9 @@ export function useScrollDirection() {
  * Función para navegación suave a las secciones
  * @param sectionId - ID de la sección a la que navegar
  * @param onNavigate - Callback opcional a ejecutar después de navegar
+ * @param lenis - Instancia opcional de Lenis para smooth scroll premium
  */
-export function scrollToSection(sectionId: string, onNavigate?: () => void) {
+export function scrollToSection(sectionId: string, onNavigate?: () => void, lenis?: any) {
   const element = document.getElementById(sectionId);
   if (element) {
     // Marcar que el scroll es programático
@@ -80,19 +99,35 @@ export function scrollToSection(sectionId: string, onNavigate?: () => void) {
     }
 
     const offset = 80; // Altura del header
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
-    });
+    if (lenis) {
+      // Usar Lenis para smooth scroll premium
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-    // Después de que termine el scroll suave (~1.5 segundos), volver a permitir detección
-    scrollTimeout = setTimeout(() => {
-      isProgrammaticScroll = false;
-      scrollTimeout = null;
-    }, 1500);
+      lenis.scrollTo(offsetPosition, {
+        duration: 1.5,
+        onComplete: () => {
+          isProgrammaticScroll = false;
+          scrollTimeout = null;
+        }
+      });
+    } else {
+      // Fallback a scroll nativo
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+
+      // Después de que termine el scroll suave (~1.5 segundos), volver a permitir detección
+      scrollTimeout = setTimeout(() => {
+        isProgrammaticScroll = false;
+        scrollTimeout = null;
+      }, 1500);
+    }
   }
 
   if (onNavigate) {

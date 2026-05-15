@@ -1,4 +1,5 @@
 import { ReactIcon, ViteIcon, TailwindIcon, JavaScriptIcon, NodeIcon, TypeScriptIcon, ExpressIcon, PrismaIcon, PHPIcon, MySQLIcon, DockerIcon, GitIcon } from './TechIcons';
+import { motion as Motion } from 'framer-motion';
 
 const skills = [
   { name: 'JavaScript', icon: JavaScriptIcon, color: 'text-yellow-400', category: 'Lenguajes' },
@@ -32,17 +33,24 @@ export default function TechSkills() {
             {skills.map((skill) => {
               const IconComponent = skill.icon;
               return (
-                <div
+                <Motion.div
                   key={skill.name}
-                  className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col items-center gap-3 group hover:-translate-y-1"
+                  whileHover={{ y: -6, scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: 'spring', stiffness: 320, damping: 22 }}
+                  className="relative overflow-hidden bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl hover:shadow-gray-900/10 transition-shadow duration-300 flex flex-col items-center gap-3 group"
                 >
-                  <div className={`${skill.color} group-hover:scale-110 transition-transform duration-300`}>
+                  <div className="absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className={`${skill.color} group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300`}>
                     <IconComponent size={48} />
                   </div>
                   <span className="text-gray-700 font-medium text-sm">
                     {skill.name}
                   </span>
-                </div>
+                  <span className="text-[11px] uppercase tracking-wider text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {skill.category}
+                  </span>
+                </Motion.div>
               );
             })}
           </div>
