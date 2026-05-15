@@ -1,10 +1,10 @@
-import { ReactIcon, ViteIcon, TailwindIcon, JavaScriptIcon, NodeIcon, TypeScriptIcon, ExpressIcon, PrismaIcon, PHPIcon, MySQLIcon, DockerIcon, GitIcon } from './TechIcons';
+import { ReactIcon, ViteIcon, TailwindIcon, JavaScriptIcon, NodeIcon, TypeScriptIcon, ExpressIcon, PrismaIcon, PythonIcon, MySQLIcon, DockerIcon, GitIcon } from './TechIcons';
 import { motion as Motion } from 'framer-motion';
 
 const skills = [
   { name: 'JavaScript', icon: JavaScriptIcon, color: 'text-yellow-400', category: 'Lenguajes' },
   { name: 'TypeScript', icon: TypeScriptIcon, color: 'text-blue-500', category: 'Lenguajes' },
-  { name: 'PHP', icon: PHPIcon, color: 'text-indigo-400', category: 'Lenguajes' },
+  { name: 'Python', icon: PythonIcon, color: 'text-yellow-300', category: 'Lenguajes' },
   { name: 'Node.js', icon: NodeIcon, color: 'text-green-500', category: 'Backend' },
   { name: 'Express', icon: ExpressIcon, color: 'text-gray-600', category: 'Backend' },
   { name: 'Prisma', icon: PrismaIcon, color: 'text-indigo-500', category: 'Backend' },

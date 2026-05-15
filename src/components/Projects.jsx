@@ -23,6 +23,14 @@ const projects = [
     color: 'from-green-400 to-emerald-600',
   },
   {
+    title: 'Nexum',
+    description: 'Aplicación full-stack de gestión de proyectos personal tipo Notion. Combina bases de datos con vistas tabla/kanban, documentos rich-text con Tiptap y proyectos jerárquicos anidados.',
+    technologies: ['React', 'TypeScript', 'Express', 'PostgreSQL', 'Prisma', 'Tailwind CSS'],
+    github: 'https://github.com/abraham-diaz/nexum',
+    image: '/images/nexum.png',
+    color: 'from-gray-900 to-black',
+  },
+  {
     title: 'DevUtils Manager',
     description: 'Extensión para VS Code que permite guardar, organizar e insertar fragmentos de código reutilizables.',
     technologies: ['TypeScript', 'VS Code API', 'Webpack'],
