@@ -1,11 +1,10 @@
 import { useState } from 'react';
+import { AnimatePresence, motion as Motion } from 'framer-motion';
 import Loading from './components/Loadin.jsx';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
-
 import TechSkills from './components/TechSkills.jsx';
 import Projects from './components/Projects.jsx';
-
 import Footer from './components/Footer.jsx';
 
 // Lenis smooth scroll
@@ -24,7 +23,13 @@ function App() {
   return (
     <>
       {/* Pantalla de carga inicial */}
-      {loading && <Loading onLoadingComplete={() => setLoading(false)} />}
+      <AnimatePresence>
+        {loading && (
+          <Motion.div key="loading" exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
+            <Loading onLoadingComplete={() => setLoading(false)} />
+          </Motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Contenido principal del portfolio */}
       {!loading && (
@@ -47,8 +52,7 @@ function App() {
             <section id="projects">
               <Projects />
             </section>
-
-            {/* Footer - Información adicional y redes sociales */}
+            {/* Footer */}
             <Footer />
           </div>
         </LenisContext.Provider>
