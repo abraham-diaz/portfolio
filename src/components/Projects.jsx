@@ -76,7 +76,7 @@ export default function Projects() {
   };
 
   return (
-    <div className="pb-8 bg-gray-50">
+    <div className="pb-8 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4">
         {/* Contenedor de Cards Apiladas */}
         <div
@@ -94,10 +94,10 @@ export default function Projects() {
               animate={headerInView ? "visible" : "hidden"}
               className="pt-16 pb-4 text-center shrink-0"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2">
                 Proyectos
               </h2>
-              <p className="text-gray-600 text-lg">
+              <p className="text-gray-600 dark:text-gray-400 text-lg">
                 Algunos de mis trabajos recientes
               </p>
             </Motion.div>

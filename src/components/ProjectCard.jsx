@@ -23,7 +23,7 @@ export default function ProjectCard({ project, index, totalCards, progress }) {
       <Motion.div
         whileHover={{ y: -4 }}
         transition={{ type: 'spring', stiffness: 260, damping: 24 }}
-        className="bg-white rounded-3xl overflow-hidden shadow-2xl hover:shadow-gray-900/25 w-full max-w-7xl transition-shadow duration-300"
+        className="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-2xl hover:shadow-gray-900/25 dark:shadow-gray-950/50 w-full max-w-7xl transition-shadow duration-300"
       >
         <div className="grid md:grid-cols-2" style={{ height: CARD_CONFIG.cardHeight }}>
           {/* Área de imagen/logo */}
@@ -82,12 +82,12 @@ export default function ProjectCard({ project, index, totalCards, progress }) {
           </div>
 
           {/* Contenido */}
-          <div className="p-8 md:p-12 flex flex-col justify-center bg-white">
-            <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+          <div className="p-8 md:p-12 flex flex-col justify-center bg-white dark:bg-gray-800">
+            <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
               {project.title}
             </h3>
 
-            <p className="text-gray-600 text-base md:text-lg mb-6 leading-relaxed line-clamp-4">
+            <p className="text-gray-600 dark:text-gray-300 text-base md:text-lg mb-6 leading-relaxed line-clamp-4">
               {project.description}
             </p>
 
@@ -95,7 +95,7 @@ export default function ProjectCard({ project, index, totalCards, progress }) {
               {project.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="px-4 py-2 bg-gray-100 text-gray-700 text-sm font-semibold rounded-full hover:bg-gray-900 hover:text-white hover:-translate-y-0.5 transition-all duration-300"
+                  className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm font-semibold rounded-full hover:bg-gray-900 dark:hover:bg-white hover:text-white dark:hover:text-gray-900 hover:-translate-y-0.5 transition-all duration-300"
                 >
                   {tech}
                 </span>

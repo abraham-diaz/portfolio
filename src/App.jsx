@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { AnimatePresence, motion as Motion } from 'framer-motion';
+import { useState, useCallback } from 'react';
 import Loading from './components/Loadin.jsx';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
@@ -19,22 +18,17 @@ const BACKGROUND_GLOBAL = 'linear-gradient(to bottom right, #ffffff, #f5f5f5)';
 function App() {
   const [loading, setLoading] = useState(true);
   const lenis = useLenis();
+  const handleLoadingComplete = useCallback(() => setLoading(false), []);
 
   return (
     <>
       {/* Pantalla de carga inicial */}
-      <AnimatePresence>
-        {loading && (
-          <Motion.div key="loading" exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
-            <Loading onLoadingComplete={() => setLoading(false)} />
-          </Motion.div>
-        )}
-      </AnimatePresence>
+      {loading && <Loading onLoadingComplete={handleLoadingComplete} />}
 
       {/* Contenido principal del portfolio */}
       {!loading && (
         <LenisContext.Provider value={lenis}>
-          <div className="min-h-screen" style={{ background: BACKGROUND_GLOBAL }}>
+          <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
             {/* Header fijo con navegación */}
             <Header />
 
