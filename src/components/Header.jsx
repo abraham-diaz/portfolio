@@ -54,16 +54,16 @@ export default function Header() {
       } ${isScrolled ? 'py-3' : 'py-6'}`}
     >
       <div className="container mx-auto px-4">
-        <div className={`flex items-center justify-between gap-4 rounded-full transition-all duration-500 ${
+        <div className={`relative flex items-center justify-between rounded-full transition-all duration-500 ${
           isScrolled ? 'bg-white/80 shadow-lg shadow-gray-900/5 backdrop-blur-xl px-4 py-2' : ''
         }`}>
           {/* Logo */}
           <a href="#hero" onClick={() => handleNavigation('hero')} className="flex-shrink-0">
-            <img src="/images/logo.png" alt="Abraham Díaz" className={`w-auto transition-all duration-500 ${isScrolled ? 'h-12' : 'h-16'}`} />
+            <img src="/images/logo.png" alt="Abraham Díaz" className={`w-auto transition-all duration-500 ${isScrolled ? 'h-10' : 'h-24'}`} />
           </a>
 
-          {/* Navegación Desktop - Estilo Pill Centrado */}
-          <nav className={'hidden md:flex bg-white/20 backdrop-blur-sm gap-2 p-2 rounded-full'}>
+          {/* Navegación Desktop - centrada absolutamente, no se mueve con el logo */}
+          <nav className={'absolute left-1/2 -translate-x-1/2 hidden md:flex gap-2'}>
             {navItems.map((item) => (
               <button
                 key={item.id}
