@@ -1,103 +1,168 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 550">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1e1e2e"/>
-      <stop offset="100%" style="stop-color:#181825"/>
+      <stop offset="0%" stop-color="#1e1e2e"/>
+      <stop offset="100%" stop-color="#181825"/>
     </linearGradient>
     <linearGradient id="sidebar" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#252540"/>
-      <stop offset="100%" style="stop-color:#1e1e32"/>
+      <stop offset="0%" stop-color="#252540"/>
+      <stop offset="100%" stop-color="#1e1e32"/>
+    </linearGradient>
+    <linearGradient id="editor" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#11111b"/>
+      <stop offset="100%" stop-color="#181825"/>
     </linearGradient>
   </defs>
 
   <!-- Background -->
-  <rect width="800" height="400" rx="24" fill="url(#bg)"/>
+  <rect width="700" height="550" fill="url(#bg)"/>
 
-  <!-- Window dots -->
-  <circle cx="48" cy="32" r="7" fill="#ff5f57"/>
-  <circle cx="72" cy="32" r="7" fill="#febc2e"/>
-  <circle cx="96" cy="32" r="7" fill="#28c840"/>
+  <!-- Activity bar (far left) -->
+  <rect x="0" y="0" width="44" height="550" fill="#181825"/>
+  <text x="22" y="68" font-family="'Courier New', monospace" font-size="18" fill="#3a99f7" text-anchor="middle">⊞</text>
+  <text x="22" y="116" font-family="'Courier New', monospace" font-size="18" fill="#cdd6f4" text-anchor="middle">⎘</text>
+  <text x="22" y="164" font-family="'Courier New', monospace" font-size="18" fill="#585b70" text-anchor="middle">⊕</text>
+  <text x="22" y="212" font-family="'Courier New', monospace" font-size="18" fill="#585b70" text-anchor="middle">⚙</text>
 
   <!-- Sidebar -->
-  <rect x="24" y="56" width="220" height="320" rx="12" fill="url(#sidebar)" opacity="0.8"/>
+  <rect x="44" y="0" width="210" height="550" fill="url(#sidebar)"/>
 
-  <!-- Sidebar title -->
-  <text x="44" y="88" font-family="monospace" font-size="14" font-weight="bold" fill="#3a99f7">DEVUTILS</text>
+  <!-- Sidebar header -->
+  <rect x="44" y="0" width="210" height="40" fill="#12121f"/>
+  <text x="56" y="25" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#3a99f7" letter-spacing="1">DEVUTILS MANAGER</text>
 
-  <!-- Sidebar separator -->
-  <line x1="44" y1="98" x2="224" y2="98" stroke="#3a99f7" stroke-width="1" opacity="0.3"/>
+  <!-- Search bar -->
+  <rect x="54" y="48" width="190" height="26" rx="4" fill="#11111b"/>
+  <text x="68" y="65" font-family="'Courier New', monospace" font-size="12" fill="#585b70">Search snippets...</text>
+
+  <!-- Divider -->
+  <line x1="54" y1="84" x2="244" y2="84" stroke="#3a99f7" stroke-width="0.5" opacity="0.3"/>
 
   <!-- Category: Utils (expanded) -->
-  <text x="44" y="126" font-family="monospace" font-size="16" fill="#febc2e">&#x25BE;</text>
-  <text x="64" y="126" font-family="monospace" font-size="14" fill="#cdd6f4">Utils</text>
-  <text x="64" y="150" font-family="monospace" font-size="13" fill="#7f849c">  formatDate()</text>
-  <text x="64" y="172" font-family="monospace" font-size="13" fill="#3a99f7">  debounce()</text>
-  <text x="64" y="194" font-family="monospace" font-size="13" fill="#7f849c">  deepClone()</text>
+  <text x="56" y="107" font-family="'Courier New', monospace" font-size="13" fill="#febc2e">▾</text>
+  <text x="72" y="107" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">Utils</text>
+  <text x="72" y="128" font-family="'Courier New', monospace" font-size="12" fill="#7f849c">  formatDate</text>
+  <text x="72" y="148" font-family="'Courier New', monospace" font-size="12" fill="#3a99f7">  debounce</text>
+  <text x="72" y="168" font-family="'Courier New', monospace" font-size="12" fill="#7f849c">  deepClone</text>
+  <text x="72" y="188" font-family="'Courier New', monospace" font-size="12" fill="#7f849c">  throttle</text>
 
   <!-- Category: API (collapsed) -->
-  <text x="44" y="226" font-family="monospace" font-size="16" fill="#7f849c">&#x25B8;</text>
-  <text x="64" y="226" font-family="monospace" font-size="14" fill="#cdd6f4">API</text>
-  <text x="110" y="226" font-family="monospace" font-size="11" fill="#585b70">3 items</text>
+  <text x="56" y="214" font-family="'Courier New', monospace" font-size="13" fill="#7f849c">▸</text>
+  <text x="72" y="214" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">API</text>
+  <text x="172" y="214" font-family="'Courier New', monospace" font-size="11" fill="#585b70">4 items</text>
 
   <!-- Category: Auth (collapsed) -->
-  <text x="44" y="256" font-family="monospace" font-size="16" fill="#7f849c">&#x25B8;</text>
-  <text x="64" y="256" font-family="monospace" font-size="14" fill="#cdd6f4">Auth</text>
-  <text x="110" y="256" font-family="monospace" font-size="11" fill="#585b70">2 items</text>
+  <text x="56" y="240" font-family="'Courier New', monospace" font-size="13" fill="#7f849c">▸</text>
+  <text x="72" y="240" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">Auth</text>
+  <text x="172" y="240" font-family="'Courier New', monospace" font-size="11" fill="#585b70">3 items</text>
 
   <!-- Category: Testing (collapsed) -->
-  <text x="44" y="286" font-family="monospace" font-size="16" fill="#7f849c">&#x25B8;</text>
-  <text x="64" y="286" font-family="monospace" font-size="14" fill="#cdd6f4">Testing</text>
-  <text x="130" y="286" font-family="monospace" font-size="11" fill="#585b70">5 items</text>
+  <text x="56" y="266" font-family="'Courier New', monospace" font-size="13" fill="#7f849c">▸</text>
+  <text x="72" y="266" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">Testing</text>
+  <text x="172" y="266" font-family="'Courier New', monospace" font-size="11" fill="#585b70">5 items</text>
 
-  <!-- Sidebar usage count -->
-  <text x="44" y="354" font-family="monospace" font-size="11" fill="#585b70">12 functions saved</text>
+  <!-- Category: Hooks (collapsed) -->
+  <text x="56" y="292" font-family="'Courier New', monospace" font-size="13" fill="#7f849c">▸</text>
+  <text x="72" y="292" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">Hooks</text>
+  <text x="172" y="292" font-family="'Courier New', monospace" font-size="11" fill="#585b70">6 items</text>
 
-  <!-- Editor area - code preview -->
-  <rect x="260" y="56" width="516" height="320" rx="12" fill="#11111b" opacity="0.6"/>
+  <!-- Divider -->
+  <line x1="54" y1="310" x2="244" y2="310" stroke="#585b70" stroke-width="0.5" opacity="0.4"/>
 
-  <!-- Editor tab -->
-  <rect x="260" y="56" width="160" height="30" rx="8" fill="#3a99f7" opacity="0.15"/>
-  <text x="280" y="76" font-family="monospace" font-size="12" fill="#3a99f7">debounce.ts</text>
+  <!-- Footer count -->
+  <text x="56" y="520" font-family="'Courier New', monospace" font-size="11" fill="#585b70">18 snippets saved</text>
+
+  <!-- Editor area -->
+  <rect x="254" y="0" width="446" height="550" fill="url(#editor)"/>
+
+  <!-- Editor tab bar -->
+  <rect x="254" y="0" width="446" height="36" fill="#12121f"/>
+  <rect x="254" y="0" width="148" height="36" fill="#1e1e2e"/>
+  <text x="270" y="23" font-family="'Courier New', monospace" font-size="13" fill="#3a99f7">debounce.ts</text>
+  <text x="388" y="23" font-family="'Courier New', monospace" font-size="13" fill="#585b70">×</text>
+  <text x="412" y="23" font-family="'Courier New', monospace" font-size="13" fill="#585b70">formatDate.ts</text>
 
   <!-- Code lines -->
-  <text x="280" y="116" font-family="monospace" font-size="15" fill="#585b70">1</text>
-  <text x="310" y="116" font-family="monospace" font-size="15" fill="#cba6f7">export</text>
-  <text x="386" y="116" font-family="monospace" font-size="15" fill="#cba6f7">function</text>
-  <text x="480" y="116" font-family="monospace" font-size="15" fill="#89b4fa">debounce</text>
-  <text x="570" y="116" font-family="monospace" font-size="15" fill="#cdd6f4">(</text>
+  <!-- line 1 -->
+  <text x="270" y="72"  font-family="'Courier New', monospace" font-size="13" fill="#585b70">1</text>
+  <text x="296" y="72"  font-family="'Courier New', monospace" font-size="13" fill="#cba6f7">export function </text>
+  <text x="426" y="72"  font-family="'Courier New', monospace" font-size="13" fill="#89b4fa">debounce</text>
+  <text x="502" y="72"  font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">&lt;T&gt;(</text>
 
-  <text x="280" y="144" font-family="monospace" font-size="15" fill="#585b70">2</text>
-  <text x="310" y="144" font-family="monospace" font-size="15" fill="#cdd6f4">  fn:</text>
-  <text x="364" y="144" font-family="monospace" font-size="15" fill="#a6e3a1">Function</text>
-  <text x="440" y="144" font-family="monospace" font-size="15" fill="#cdd6f4">,</text>
+  <!-- line 2 -->
+  <text x="270" y="96"  font-family="'Courier New', monospace" font-size="13" fill="#585b70">2</text>
+  <text x="296" y="96"  font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">  fn: </text>
+  <text x="346" y="96"  font-family="'Courier New', monospace" font-size="13" fill="#a6e3a1">(...args: T[]) =&gt; void</text>
 
-  <text x="280" y="172" font-family="monospace" font-size="15" fill="#585b70">3</text>
-  <text x="310" y="172" font-family="monospace" font-size="15" fill="#cdd6f4">  ms:</text>
-  <text x="364" y="172" font-family="monospace" font-size="15" fill="#a6e3a1">number</text>
+  <!-- line 3 -->
+  <text x="270" y="120" font-family="'Courier New', monospace" font-size="13" fill="#585b70">3</text>
+  <text x="296" y="120" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">  ms: </text>
+  <text x="346" y="120" font-family="'Courier New', monospace" font-size="13" fill="#a6e3a1">number</text>
+  <text x="420" y="120" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4"> = 300</text>
 
-  <text x="280" y="200" font-family="monospace" font-size="15" fill="#585b70">4</text>
-  <text x="310" y="200" font-family="monospace" font-size="15" fill="#cdd6f4">) {</text>
+  <!-- line 4 -->
+  <text x="270" y="144" font-family="'Courier New', monospace" font-size="13" fill="#585b70">4</text>
+  <text x="296" y="144" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">) {</text>
 
-  <text x="280" y="228" font-family="monospace" font-size="15" fill="#585b70">5</text>
-  <text x="310" y="228" font-family="monospace" font-size="15" fill="#cba6f7">  let</text>
-  <text x="358" y="228" font-family="monospace" font-size="15" fill="#cdd6f4">timer:</text>
-  <text x="428" y="228" font-family="monospace" font-size="15" fill="#a6e3a1">number</text>
+  <!-- line 5 -->
+  <text x="270" y="168" font-family="'Courier New', monospace" font-size="13" fill="#585b70">5</text>
+  <text x="296" y="168" font-family="'Courier New', monospace" font-size="13" fill="#cba6f7">  let </text>
+  <text x="338" y="168" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">timer: </text>
+  <text x="398" y="168" font-family="'Courier New', monospace" font-size="13" fill="#a6e3a1">ReturnType&lt;typeof setTimeout&gt;</text>
 
-  <text x="280" y="256" font-family="monospace" font-size="15" fill="#585b70">6</text>
-  <text x="310" y="256" font-family="monospace" font-size="15" fill="#cba6f7">  return</text>
-  <text x="390" y="256" font-family="monospace" font-size="15" fill="#cdd6f4">(...</text>
-  <text x="428" y="256" font-family="monospace" font-size="15" fill="#89b4fa">args</text>
-  <text x="470" y="256" font-family="monospace" font-size="15" fill="#cdd6f4">) =></text>
-  <text x="530" y="256" font-family="monospace" font-size="15" fill="#cdd6f4">{</text>
+  <!-- line 6 -->
+  <text x="270" y="192" font-family="'Courier New', monospace" font-size="13" fill="#585b70">6</text>
+  <text x="296" y="192" font-family="'Courier New', monospace" font-size="13" fill="#cba6f7">  return </text>
+  <text x="360" y="192" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">(...</text>
+  <text x="400" y="192" font-family="'Courier New', monospace" font-size="13" fill="#89b4fa">args</text>
+  <text x="434" y="192" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">: T[]) =&gt; {</text>
 
-  <text x="280" y="284" font-family="monospace" font-size="15" fill="#585b70">7</text>
-  <text x="310" y="284" font-family="monospace" font-size="15" fill="#89b4fa">    clearTimeout</text>
-  <text x="470" y="284" font-family="monospace" font-size="15" fill="#cdd6f4">(timer)</text>
+  <!-- line 7 -->
+  <text x="270" y="216" font-family="'Courier New', monospace" font-size="13" fill="#585b70">7</text>
+  <text x="296" y="216" font-family="'Courier New', monospace" font-size="13" fill="#89b4fa">    clearTimeout</text>
+  <text x="424" y="216" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">(timer)</text>
 
-  <!-- Cursor blink line -->
-  <rect x="310" y="298" width="2" height="18" fill="#3a99f7" opacity="0.8"/>
+  <!-- line 8 -->
+  <text x="270" y="240" font-family="'Courier New', monospace" font-size="13" fill="#585b70">8</text>
+  <text x="296" y="240" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">    timer = </text>
+  <text x="376" y="240" font-family="'Courier New', monospace" font-size="13" fill="#89b4fa">setTimeout</text>
+  <text x="462" y="240" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">(() =&gt;</text>
 
-  <!-- Insert shortcut hint -->
-  <rect x="560" y="340" width="200" height="28" rx="6" fill="#3a99f7" opacity="0.12"/>
-  <text x="574" y="359" font-family="monospace" font-size="12" fill="#3a99f7">Ctrl+Alt+I  Insert</text>
+  <!-- line 9 -->
+  <text x="270" y="264" font-family="'Courier New', monospace" font-size="13" fill="#585b70">9</text>
+  <text x="296" y="264" font-family="'Courier New', monospace" font-size="13" fill="#89b4fa">      fn</text>
+  <text x="336" y="264" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">(...args), ms)</text>
+
+  <!-- line 10 -->
+  <text x="270" y="288" font-family="'Courier New', monospace" font-size="13" fill="#585b70">10</text>
+  <text x="296" y="288" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">  }</text>
+
+  <!-- line 11 -->
+  <text x="270" y="312" font-family="'Courier New', monospace" font-size="13" fill="#585b70">11</text>
+  <text x="296" y="312" font-family="'Courier New', monospace" font-size="13" fill="#cdd6f4">}</text>
+
+  <!-- Cursor -->
+  <rect x="296" y="322" width="2" height="16" fill="#3a99f7" opacity="0.85"/>
+
+  <!-- Divider -->
+  <line x1="270" y1="348" x2="685" y2="348" stroke="#252540" stroke-width="1"/>
+
+  <!-- Insert shortcut highlight -->
+  <rect x="270" y="360" width="410" height="28" rx="5" fill="#3a99f7" opacity="0.1"/>
+  <text x="286" y="379" font-family="'Courier New', monospace" font-size="13" fill="#3a99f7">Ctrl+Alt+I</text>
+  <text x="384" y="379" font-family="'Courier New', monospace" font-size="13" fill="#7f849c">  Insert snippet at cursor</text>
+
+  <!-- Preview label -->
+  <text x="270" y="420" font-family="'Courier New', monospace" font-size="11" fill="#585b70">PREVIEW</text>
+  <line x1="325" y1="415" x2="685" y2="415" stroke="#585b70" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Preview box -->
+  <rect x="270" y="430" width="410" height="80" rx="6" fill="#12121f"/>
+  <text x="286" y="453" font-family="'Courier New', monospace" font-size="12" fill="#585b70">// Delays fn execution by ms milliseconds.</text>
+  <text x="286" y="473" font-family="'Courier New', monospace" font-size="12" fill="#585b70">// Resets the timer on every new call.</text>
+  <text x="286" y="497" font-family="'Courier New', monospace" font-size="12" fill="#22c55e">✓  TypeScript  ·  Utils  ·  v1.2</text>
+
+  <!-- Status bar -->
+  <rect x="254" y="530" width="446" height="20" fill="#3a99f7" opacity="0.15"/>
+  <text x="270" y="544" font-family="'Courier New', monospace" font-size="11" fill="#3a99f7">TypeScript  ·  UTF-8  ·  Spaces: 2</text>
 </svg>

@@ -9,7 +9,7 @@ const projects = [
     description: 'Sistema de gestión de conocimiento con RAG y embeddings duales (MiniLM + MPNet). Los conceptos auto-evolucionan según recurrencia temporal usando búsqueda vectorial con pgvector. Arquitectura de microservicios con Express, FastAPI, PostgreSQL 16 + pgvector, y PWA con JWT.',
     technologies: ['TypeScript', 'Express', 'FastAPI', 'PostgreSQL', 'pgvector', 'Docker'],
     github: 'https://github.com/abraham-diaz/GLaDos',
-    image: '/images/glados.png',
+    image: '/images/glados.svg',
     color: 'from-amber-400 to-orange-600',
   },
   {
