@@ -9,7 +9,7 @@ const projects = [
     description: 'Sistema de gestión de conocimiento con RAG y embeddings duales (MiniLM + MPNet). Los conceptos auto-evolucionan según recurrencia temporal usando búsqueda vectorial con pgvector. Arquitectura de microservicios con Express, FastAPI, PostgreSQL 16 + pgvector, y PWA con JWT.',
     technologies: ['TypeScript', 'Express', 'FastAPI', 'PostgreSQL', 'pgvector', 'Docker'],
     github: 'https://github.com/abraham-diaz/GLaDos',
-    image: '/images/glados.png',
+    image: '/images/glados.svg',
     color: 'from-amber-400 to-orange-600',
   },
   {
@@ -76,44 +76,44 @@ export default function Projects() {
   };
 
   return (
-    <div className="pt-20 pb-8 bg-gray-50">
+    <div className="pb-8 bg-gray-50">
       <div className="container mx-auto px-4">
-        {/* Header */}
-        <Motion.div
-          ref={headerRef}
-          variants={headerVariants}
-          initial="hidden"
-          animate={headerInView ? "visible" : "hidden"}
-          className="mb-12"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-gray-900">
-            Proyectos
-          </h2>
-          <p className="text-center text-gray-600 text-lg">
-            Algunos de mis trabajos recientes
-          </p>
-        </Motion.div>
-
-        {/* Contenedor de Cards Apiladas - Todas en el mismo punto */}
+        {/* Contenedor de Cards Apiladas */}
         <div
           ref={containerRef}
           className="relative w-full"
-          style={{
-            // Más recorrido para que el apilado avance de forma suave
-            height: `${projects.length * 70}vh`
-          }}
+          style={{ height: `${projects.length * 70}vh` }}
         >
-          {/* Wrapper sticky que mantiene las cards en el viewport */}
-          <div className="sticky top-0 h-screen flex items-center justify-center" style={{ marginBottom: 0 }}>
-            {projects.map((project, index) => (
-              <ProjectCard
-                key={project.title}
-                project={project}
-                index={index}
-                totalCards={projects.length}
-                progress={scrollYProgress}
-              />
-            ))}
+          {/* Wrapper sticky: header + cards juntos */}
+          <div className="sticky top-0 h-screen flex flex-col">
+            {/* Header pinned al top del sticky */}
+            <Motion.div
+              ref={headerRef}
+              variants={headerVariants}
+              initial="hidden"
+              animate={headerInView ? "visible" : "hidden"}
+              className="pt-16 pb-4 text-center shrink-0"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">
+                Proyectos
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Algunos de mis trabajos recientes
+              </p>
+            </Motion.div>
+
+            {/* Área de cards — ocupa el espacio restante */}
+            <div className="relative flex-1">
+              {projects.map((project, index) => (
+                <ProjectCard
+                  key={project.title}
+                  project={project}
+                  index={index}
+                  totalCards={projects.length}
+                  progress={scrollYProgress}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

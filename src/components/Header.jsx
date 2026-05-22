@@ -6,7 +6,8 @@ import { useLenisContext } from '../contexts/LenisContext';
 const navItems = [
   { name: 'Inicio', id: 'hero' },
   { name: 'Skills', id: 'skills' },
-  { name: 'Proyectos', id: 'projects' }
+  { name: 'Proyectos', id: 'projects' },
+  { name: 'Contacto', id: 'contact' },
 ];
 
 export default function Header() {
