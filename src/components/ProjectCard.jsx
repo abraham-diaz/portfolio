@@ -1,52 +1,14 @@
-import { motion as Motion, useTransform } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
+import { CARD_CONFIG, useCardAnimations } from '../hooks/useCardConfig';
 
-/**
- * Componente de tarjeta de proyecto con efecto de apilamiento
- * Todas las cards están en el mismo punto y se deslizan hacia arriba al hacer scroll
- *
- * @param {Object} props
- * @param {Object} props.project - Datos del proyecto
- * @param {number} props.index - Índice de la card en el stack
- * @param {number} props.totalCards - Total de cards en el stack
- * @param {MotionValue} props.progress - Progreso de scroll del contenedor
- */
 export default function ProjectCard({ project, index, totalCards, progress }) {
-  const isLastCard = index === totalCards - 1;
-
-  // Detectar reduced motion preference
-  const prefersReducedMotion = typeof window !== 'undefined'
-    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    : false;
-
-  // Calcular en qué punto del scroll esta card debe moverse
-  // Cada card ocupa una fracción del scroll total
-  const cardScrollStart = index / totalCards;
-  const cardScrollEnd = (index + 1) / totalCards;
-
-  // TranslateY: la card se mueve hacia arriba cuando le toca
-  // 0 = en su posición original
-  // -120vh = completamente fuera de vista arriba (movimiento más pronunciado)
-  const yValue = useTransform(
+  const { y, scale, opacity, prefersReducedMotion } = useCardAnimations({
     progress,
-    [cardScrollStart, cardScrollEnd],
-    [0, prefersReducedMotion || isLastCard ? 0 : -72]
-  );
+    index,
+    totalCards,
+  });
 
-  const y = useTransform(yValue, (value) => `${value}vh`);
-
-  // Scale: pequeño efecto de reducción al inicio del movimiento
-  const scale = useTransform(
-    progress,
-    [cardScrollStart, cardScrollStart + 0.15, cardScrollEnd],
-    [1, prefersReducedMotion || isLastCard ? 1 : 0.985, prefersReducedMotion || isLastCard ? 1 : 0.96]
-  );
-
-  // Opacity: se desvanece completamente cuando termina de moverse
-  const opacity = useTransform(
-    progress,
-    [cardScrollStart, cardScrollEnd - 0.15, cardScrollEnd],
-    isLastCard ? [1, 1, 1] : [1, 0.85, 0.25]
-  );
+  const isSvg = project.image?.endsWith('.svg');
 
   return (
     <Motion.div
@@ -54,7 +16,7 @@ export default function ProjectCard({ project, index, totalCards, progress }) {
         y,
         scale: prefersReducedMotion ? 1 : scale,
         opacity,
-        zIndex: totalCards - index, // Cards superiores tienen mayor z-index
+        zIndex: totalCards - index,
       }}
       className="absolute inset-0 flex items-center justify-center px-4"
     >
@@ -63,7 +25,7 @@ export default function ProjectCard({ project, index, totalCards, progress }) {
         transition={{ type: 'spring', stiffness: 260, damping: 24 }}
         className="bg-white rounded-3xl overflow-hidden shadow-2xl hover:shadow-gray-900/25 w-full max-w-7xl transition-shadow duration-300"
       >
-        <div className="grid md:grid-cols-2 min-h-[550px]">
+        <div className="grid md:grid-cols-2" style={{ height: CARD_CONFIG.cardHeight }}>
           {/* Área de imagen/logo */}
           <div
             className={`relative overflow-hidden flex items-center justify-center ${
@@ -75,7 +37,11 @@ export default function ProjectCard({ project, index, totalCards, progress }) {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover"
+                className={
+                  isSvg
+                    ? 'w-full h-full object-contain'
+                    : 'w-full h-full object-cover'
+                }
               />
             ) : (
               <div className="text-white text-center w-full h-full flex flex-col items-center justify-center">
@@ -121,7 +87,7 @@ export default function ProjectCard({ project, index, totalCards, progress }) {
               {project.title}
             </h3>
 
-            <p className="text-gray-600 text-base md:text-lg mb-6 leading-relaxed">
+            <p className="text-gray-600 text-base md:text-lg mb-6 leading-relaxed line-clamp-4">
               {project.description}
             </p>
 
