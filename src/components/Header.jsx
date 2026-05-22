@@ -62,7 +62,6 @@ export default function Header() {
             <img src="/images/logo.png" alt="Abraham Díaz" className={`w-auto transition-all duration-500 ${isScrolled ? 'h-10' : 'h-24'}`} />
           </a>
 
-          {/* Navegación Desktop - centrada absolutamente, no se mueve con el logo */}
           <nav className={'absolute left-1/2 -translate-x-1/2 hidden md:flex gap-2'}>
             {navItems.map((item) => (
               <button
@@ -81,10 +80,9 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Spacer para mantener la nav centrada */}
           <div className="w-10 flex-shrink-0 hidden md:block"></div>
 
-          {/* Botón menú móvil */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={`md:hidden p-2 rounded-lg transition-colors ${
@@ -96,7 +94,7 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Menú móvil */}
+        {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <nav className={`md:hidden mt-4 space-y-2 rounded-2xl p-2 ${
             isScrolled ? 'bg-gray-100' : 'bg-white/20 backdrop-blur-sm'
