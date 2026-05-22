@@ -1,38 +1,61 @@
 import React from 'react';
-import { ReactIcon, ViteIcon, TailwindIcon, JavaScriptIcon, NodeIcon, TypeScriptIcon, ExpressIcon, PrismaIcon, PythonIcon, MySQLIcon, DockerIcon, APIIcon } from './TechIcons';
+import { motion as Motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
+import { ReactIcon, JavaScriptIcon, NodeIcon, TypeScriptIcon, ExpressIcon, PrismaIcon, PythonIcon, MySQLIcon, DockerIcon } from './TechIcons';
+
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1] } }
+};
 
 export default function Hero() {
   return (
- <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6 pt-24 md:pt-0">
+    <div className="relative min-h-screen bg-gray-50 flex items-center justify-center px-6 pt-24 md:pt-0">
       <div className="max-w-6xl w-full grid md:grid-cols-2 gap-12 items-center">
-        
+
         {/* Columna Izquierda - Texto */}
-        <div className="space-y-6">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900">
-            Hola, soy Abraham
-          </h1>
-          
-          <div className="inline-block">
+        <Motion.div
+          className="space-y-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <Motion.h1
+            className="text-5xl md:text-7xl font-black text-gray-900 leading-none tracking-tight"
+            variants={itemVariants}
+          >
+            Hola,<br />
+            <span className="text-gray-400">soy </span>Abraham
+          </Motion.h1>
+
+          <Motion.div className="inline-block" variants={itemVariants}>
             <span className="bg-blue-50 text-blue-600 px-4 py-2 rounded-lg text-lg font-mono">
               Full Stack Developer Jr.
             </span>
-          </div>
-          
-          <p className="text-gray-600 text-lg leading-relaxed">
-         Soy <strong>desarrollador full stack junior</strong> con experiencia en React, Node.js, TypeScript y APIs REST.
-         Me encanta aprender, explorar nuevas tecnologías y construir proyectos
-         que resuelvan problemas reales.
-          </p>
-          
-          {/* Botones */}
-          <div className="flex gap-4 flex-wrap">
-            <a href="/CV-Abraham.pdf" download className="px-6 py-3 border-2 border-gray-900 rounded-full hover:bg-gray-900 hover:text-white transition-all duration-300 font-medium">
+          </Motion.div>
+
+          <Motion.p className="text-gray-600 text-lg leading-relaxed" variants={itemVariants}>
+            Soy <strong>desarrollador full stack junior</strong> con experiencia en React, Node.js, TypeScript y APIs REST.
+            Me encanta aprender, explorar nuevas tecnologías y construir proyectos
+            que resuelvan problemas reales.
+          </Motion.p>
+
+          <Motion.div className="flex gap-4 flex-wrap" variants={itemVariants}>
+            <a
+              href="/CV-Abraham.pdf"
+              download
+              className="px-6 py-3 border-2 border-gray-900 rounded-full hover:bg-gray-900 hover:text-white transition-all duration-300 font-medium"
+            >
               Descargar CV
             </a>
-          </div>
-          
-          {/* Redes Sociales */}
-          <div className="pt-4">
+          </Motion.div>
+
+          <Motion.div className="pt-4" variants={itemVariants}>
             <p className="text-sm text-gray-400 uppercase tracking-wider mb-3">Sígueme</p>
             <div className="flex gap-4">
               <a href="https://www.linkedin.com/in/abraham-díaz-ahijón" className="text-gray-600 hover:text-gray-900 transition-colors">
@@ -46,21 +69,25 @@ export default function Hero() {
                 </svg>
               </a>
             </div>
-          </div>
-        </div>
-        
-<div className="relative">
+          </Motion.div>
+        </Motion.div>
+
+        {/* Columna Derecha - Card con íconos flotantes */}
+        <Motion.div
+          className="relative"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.33, 1, 0.68, 1] }}
+        >
           <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl shadow-2xl overflow-hidden aspect-[4/3] max-w-lg mx-auto relative">
 
-            {/* Iconos SVG optimizados - Fila superior */}
+            {/* Fila superior */}
             <div className="absolute top-8 left-16 text-blue-400 animate-float">
               <ReactIcon size={40} />
             </div>
-
             <div className="absolute top-8 left-1/2 -translate-x-1/2 text-yellow-400 animate-float-slow">
               <JavaScriptIcon size={38} />
             </div>
-
             <div className="absolute top-8 right-16 text-blue-500 animate-float-slow">
               <TypeScriptIcon size={38} />
             </div>
@@ -69,7 +96,6 @@ export default function Hero() {
             <div className="absolute top-1/2 -translate-y-1/2 left-12 text-green-500 animate-float-slow">
               <NodeIcon size={38} />
             </div>
-
             <div className="absolute top-1/2 -translate-y-1/2 right-12 text-gray-300 animate-float">
               <ExpressIcon size={38} />
             </div>
@@ -78,15 +104,12 @@ export default function Hero() {
             <div className="absolute bottom-8 left-12 text-indigo-400 animate-float-delayed">
               <PrismaIcon size={38} />
             </div>
-
             <div className="absolute bottom-8 left-1/3 text-yellow-300 animate-float">
               <PythonIcon size={36} />
             </div>
-
             <div className="absolute bottom-8 right-1/3 text-orange-400 animate-float-slow">
               <MySQLIcon size={36} />
             </div>
-
             <div className="absolute bottom-8 right-12 text-blue-400 animate-float-delayed-2">
               <DockerIcon size={38} />
             </div>
@@ -94,33 +117,37 @@ export default function Hero() {
             {/* Texto central */}
             <div className="absolute inset-0 flex items-center justify-center text-white text-center z-10">
               <div>
-                <h3 className="text-4xl font-bold mb-3 tracking-tight">
-                  Software
-                </h3>
-                <p className="text-xl text-gray-400 font-light">
-                  Developer
-                </p>
+                <h3 className="text-4xl font-bold mb-3 tracking-tight">Software</h3>
+                <p className="text-xl text-gray-400 font-light">Developer</p>
                 <div className="mt-4 flex gap-2 justify-center flex-wrap px-4">
-                  <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium border border-white/20">
-                    React
-                  </span>
-                  <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium border border-white/20">
-                    Node.js
-                  </span>
-                  <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium border border-white/20">
-                    TypeScript
-                  </span>
+                  <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium border border-white/20">React</span>
+                  <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium border border-white/20">Node.js</span>
+                  <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-xs font-medium border border-white/20">TypeScript</span>
                 </div>
               </div>
             </div>
 
-            {/* Efecto de brillo */}
             <div className="absolute inset-0 bg-gradient-to-t from-purple-500/20 to-transparent pointer-events-none"></div>
-
           </div>
-        </div>
-        
+        </Motion.div>
+
       </div>
+
+      {/* Scroll indicator */}
+      <Motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.6 }}
+      >
+        <span className="text-xs uppercase tracking-widest text-gray-400">Scroll</span>
+        <Motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
+        >
+          <ChevronDown className="w-4 h-4 text-gray-400" />
+        </Motion.div>
+      </Motion.div>
     </div>
   );
 }
